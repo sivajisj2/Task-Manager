@@ -2,37 +2,33 @@ import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useEffect, useState } from "react";
-
+import '../styles/Form.css'
 import React from "react";
 
 const Form = ({ route, method }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const name = method === "login" ? "Login" : "Register";
   const navigate = useNavigate();
+  const name = method === "login" ? "Login" : "Register";
 
-  const handleSubmit = async(e) => {
-    setLoading(true);
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-        const res = await api.post(route, {username, password})
-     
-        if(method === "login"){
-            localStorage.setItem(ACCESS_TOKEN, res.data.access)
-            localStorage.setItem(REFRESH_TOKEN, res.data.refresh)
-            navigate('/')
-        }else{
-            navigate('/login')
-        }
-    
+      const res = await api.post(route, { username, password });
+      if (method === "login") {
+        localStorage.setItem(ACCESS_TOKEN, res.data.access);
+        localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+        navigate("/");
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
-        alert(error.message)
-        
-    }finally{
-        setLoading(false);
+      alert(error.message); // Display error message instead of entire error object
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,7 +44,7 @@ const Form = ({ route, method }) => {
       />
 
       <input
-        type="text"
+        type="password" 
         value={password}
         className="form-input"
         onChange={(e) => setPassword(e.target.value)}
