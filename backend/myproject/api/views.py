@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .serializers import UserSerializer, NoteSerializer
 from rest_framework import permissions, status
-
+from .models import Note
 
 # Create your views here.
 class NoteListCreate(generics.ListCreateAPIView):
