@@ -4,6 +4,7 @@ import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useEffect, useState } from "react";
 import '../styles/Form.css'
 import React from "react";
+import LoadingIndicator from "./LoadingIndicator";
 
 const Form = ({ route, method }) => {
   const [username, setUsername] = useState("");
@@ -50,6 +51,8 @@ const Form = ({ route, method }) => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
+
+      { loading && <LoadingIndicator/> }
       <button className="form-button" type="submit">
         {name}
       </button>

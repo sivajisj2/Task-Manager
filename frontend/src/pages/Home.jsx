@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import api from '../api'
+import Note from '../components/Note'
+import "../styles/Home.css"
 const Home = () => {
   const [notes, setNotes] = useState([])
   const [content, setContent] = useState("")
@@ -20,10 +22,14 @@ const Home = () => {
   const deleteNote = (id) =>{ 
     api.delete(`api/notes/delete/${id}/`)
     .then((res) => {
-      if(res.status === 200) alert("Note deleted successfully")
-      else alert("Note not found")
+      if(res.status === 200) {
+        alert("Note deleted successfully")
+      }
+      else {
+        alert("Note not found")
+      }
+      getNotes();
     }).catch((err) => alert(err))
-    getNotes()
 
   }
 
@@ -31,18 +37,24 @@ const Home = () => {
         e.preventDefault()
         api.post(`/api/notes/`, {content, title})
         .then((res) => {
-          if (res.status === 200) alert("Note created successfully")
-          else alert("Note making request failed")
+          if (res.status === 200){
+   alert("Note created successfully")
+          } else{ 
+            alert("Note making request failed")
+          }
 
+          getNotes()
           
         }).catch(err => alert(err))
-        getNotes()
   }
 
   return (
    <div>
       <div>
       <h2>Notes</h2>
+      {notes.map((note) => (
+    <Note note={note} key={note.id} onDelete={deleteNote} />
+  ))}
 
         </div>     
         <h2>Create a Note</h2>

@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-   'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -71,7 +71,6 @@ MIDDLEWARE = [
 ]
 APPEND_SLASH=False
 ROOT_URLCONF = 'myproject.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -133,6 +132,7 @@ USE_I18N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -142,3 +142,11 @@ STATIC_URL = '/static/'
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True  # Allow credentials like cookies
 
+CORS_ALLOWED_ORIGINS = [
+    'https://5173-sivajisj2-taskmanager-fzcchz5a13t.ws-us114.gitpod.io',
+    # Add other origins if necessary
+]
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-sivajisj2-taskmanager-fzcchz5a13t.ws-us114.gitpod.io',
+    'https://5173-sivajisj2-taskmanager-fzcchz5a13t.ws-us114.gitpod.io/',
+]
